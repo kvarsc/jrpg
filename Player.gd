@@ -1,7 +1,8 @@
 extends KinematicBody2D
 # This script controls movement
 var motion = Vector2()
-const speed = 100
+const speed = 150
+const fastmult = 2
 
 func _physics_process(delta):
 	if Input.is_action_pressed("ui_right"):
@@ -16,5 +17,8 @@ func _physics_process(delta):
 		motion.y = speed
 	else:
 		motion.y = 0
+		
+	if Input.is_action_pressed("ui_shift"):
+		motion = fastmult*motion
 		
 	move_and_slide(motion)
